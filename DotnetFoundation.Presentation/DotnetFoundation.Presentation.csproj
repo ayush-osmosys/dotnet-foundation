@@ -10,5 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DotnetFoundation.Core\DotnetFoundation.Core.csproj" />
+		<ProjectReference Include="..\DotnetFoundation.Application\DotnetFoundation.Application.csproj" />
+		<ProjectReference Include="..\DotnetFoundation.Infrastracture\DotnetFoundation.Infrastracture.csproj" />
+	</ItemGroup>
 
 </Project>
