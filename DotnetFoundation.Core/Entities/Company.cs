@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace DotnetFoundation.Core.Entities
 {
-    public class User
+    public class Company
     {
-        public string Id { get; set; } // Assuming you're using string as the primary key type
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
+        public Guid Id { get; set; }
+        public string CompanyName { get; set; }
+        public string Description { get; set; }
         // Add other properties as needed
 
         // Navigation properties if relationships are present

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace DotnetFoundation.Core.Services.UserService
 {
-    public class IUserService
+    public interface IUserService
     {
-        
+        Task<Guid> CreateUserAsync(string userName, string email, string password);
     }
 }

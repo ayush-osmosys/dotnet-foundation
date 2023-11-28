@@ -8,11 +8,15 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DotnetFoundation\DotnetFoundation.Core.csproj" />
-		<ProjectReference Include="..\DotnetFoundation.Infrastracture\DotnetFoundation.Infrastracture.csproj" />
+		<ProjectReference Include="..\DotnetFoundation.Infrastructure\DotnetFoundation.Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MediatR" Version="11.0.0" />
 	</ItemGroup>
 
 </Project>
