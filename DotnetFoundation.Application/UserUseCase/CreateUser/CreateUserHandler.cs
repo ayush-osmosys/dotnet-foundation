@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using DotnetFoundation.Core.Services.UserService;
 using MediatR;
 
-namespace DotnetFoundation.Application.User.CreateUser
+namespace DotnetFoundation.Application.UserUseCase.CreateUser
 {
     public class CreateUserHandler : IRequestHandler<CreateUserCommand, Guid>
     {
