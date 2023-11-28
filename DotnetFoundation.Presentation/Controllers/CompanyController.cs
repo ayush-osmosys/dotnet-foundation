@@ -9,11 +9,11 @@ using Microsoft.Extensions.Logging;
 namespace DotnetFoundation.Presentation.Controllers
 {
     [Route("[controller]")]
-    public class UserController : Controller
+    public class CompanyController : Controller
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<CompanyController> _logger;
 
-        public UserController(ILogger<UserController> logger)
+        public CompanyController(ILogger<CompanyController> logger)
         {
             _logger = logger;
         }
@@ -28,7 +28,5 @@ namespace DotnetFoundation.Presentation.Controllers
         {
             return View("Error!");
         }
-
-
     }
 }
