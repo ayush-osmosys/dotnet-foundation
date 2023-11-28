@@ -11,33 +11,21 @@ using Microsoft.Extensions.Logging;
 
 namespace DotnetFoundation.Presentation.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
+
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
         [HttpPost]
+        [Route("create")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand createUserCommand)
         {
             try
@@ -54,7 +42,8 @@ namespace DotnetFoundation.Presentation.Controllers
             }
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet]
+        [Route("get/{userId}")]
         public async Task<IActionResult> GetUserById(string userId)
         {
             try
