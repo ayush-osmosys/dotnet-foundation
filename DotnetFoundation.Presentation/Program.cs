@@ -1,4 +1,7 @@
+using DotnetFoundation.Presentation.Middleware;
 using MediatR;
+using DotnetFoundation.Application;
+using DotnetFoundation.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(typeof(Program).Assembly);
-
+builder.Services.AddApplication()
+                .AddInfrastructure();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,7 +16,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\DotnetFoundation.Core\DotnetFoundation.Core.csproj" />
 		<ProjectReference Include="..\DotnetFoundation.Application\DotnetFoundation.Application.csproj" />
 		<ProjectReference Include="..\DotnetFoundation.Infrastructure\DotnetFoundation.Infrastructure.csproj" />
 	</ItemGroup>

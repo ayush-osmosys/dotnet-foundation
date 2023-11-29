@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace DotnetFoundation.Presentation.DTOs
 {
-    public class UserDto
+    public class LoginDTO
     {
-        public string UserName { get; set; }
         public string Email { get; set; }
-        public string Token { get; set; }
+        public string Password { get; set; }
     }
 }

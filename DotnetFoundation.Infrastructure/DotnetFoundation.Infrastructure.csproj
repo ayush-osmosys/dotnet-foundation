@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DotnetFoundation.Core\DotnetFoundation.Core.csproj" />
+		<ProjectReference Include="..\DotnetFoundation.Application\DotnetFoundation.Application.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -17,6 +18,8 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    <PrivateAssets>all</PrivateAssets>
 	  </PackageReference>
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+	  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
 	</ItemGroup>	
 
 </Project>

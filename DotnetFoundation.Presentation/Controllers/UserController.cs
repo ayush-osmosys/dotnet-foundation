@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DotnetFoundation.Application.UserUseCase.CreateUser;
 using DotnetFoundation.Application.UserUseCase.GetUser;
+using DotnetFoundation.Presentation.Errors;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -38,7 +39,8 @@ namespace DotnetFoundation.Presentation.Controllers
             catch (Exception ex)
             {
                 // Log the exception
-                return StatusCode(500, "Internal Server Error"); // Or return a custom error message
+                _logger.LogError("Error creating user");
+                return StatusCode(500, new APIResponce(500, "Internal Server Error")); // Or return a custom error message
             }
         }
 
@@ -53,7 +55,7 @@ namespace DotnetFoundation.Presentation.Controllers
 
                 if (user == null)
                 {
-                    return NotFound(); // User not found
+                    return NotFound(new APIResponce(404, "User not found"));
                 }
 
                 return Ok(user); // Return the user as JSON
@@ -61,7 +63,9 @@ namespace DotnetFoundation.Presentation.Controllers
             catch (Exception ex)
             {
                 // Log the exception
-                return StatusCode(500, "Internal Server Error"); // Or return a custom error message
+                _logger.LogError(ex, "Error getting user");
+                return StatusCode(500, new APIResponce(500, "Internal Server Error"));
+                // Or return a custom error message
             }
         }
     }
