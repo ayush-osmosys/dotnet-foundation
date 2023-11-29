@@ -7,10 +7,9 @@ namespace DotnetFoundation.Core.Entities
 {
     public class User
     {
-        public string Id { get; set; } // Assuming you're using string as the primary key type
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
+        public int Id { get; set; } // Assuming you're using string as the primary key type
+        public string Name { get; set; } = String.Empty;
+        public string Email { get; set; } = String.Empty;
         // Add other properties as needed
 
         // Navigation properties if relationships are present

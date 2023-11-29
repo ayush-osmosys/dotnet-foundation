@@ -5,47 +5,61 @@ using System.Threading.Tasks;
 using DotnetFoundation.Core.Entities;
 using DotnetFoundation.Core.Interfaces.UserRepo;
 using DotnetFoundation.Infrastructure.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetFoundation.Infrastructure.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly UserDbContext _dbContext;
 
-        public UserRepository(ApplicationDbContext dbContext)
+        public UserRepository(UserDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-
-        public async Task<Guid> AddAsync(User user)
+        public async Task<User> AddUser(User toCreate)
         {
-            // Assuming Id is a Guid property in your User entity
-            _dbContext.Users.Add(user);
+            _dbContext.Users.Add(toCreate);
 
-            // Save changes to the database
             await _dbContext.SaveChangesAsync();
 
-            // Return the newly created user's Id
-            return Guid.Parse(user.Id);
+            return toCreate;
         }
-        public async Task<User> GetByIdAsync(string userId)
+
+        public async Task DeleteUser(int UserId)
         {
-            return await _dbContext.Users.FindAsync(userId);
-        }
-        public async Task UpdateAsync(User user)
-        {
-            _dbContext.Users.Update(user);
+            var User = _dbContext.Users
+                .FirstOrDefault(p => p.Id == UserId);
+
+            if (User is null) return;
+
+            _dbContext.Users.Remove(User);
+
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(string userId)
+        public async Task<ICollection<User>> GetAll()
         {
-            var user = await _dbContext.Users.FindAsync(userId);
-            if (user != null)
-            {
-                _dbContext.Users.Remove(user);
-                await _dbContext.SaveChangesAsync();
-            }
+            return await _dbContext.Users.ToListAsync();
+        }
+
+        public async Task<User> GetUserById(int UserId)
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync(p => p.Id == UserId);
+        }
+
+        public async Task<User> UpdateUser(int UserId, string name, string email)
+        {
+            var User = await _dbContext.Users.FirstOrDefaultAsync(p => p.Id == UserId);
+
+            if (User == null) return null; // Handle the case where the person is not found
+
+            User.Name = name;
+            User.Email = email;
+
+            await _dbContext.SaveChangesAsync();
+
+            return User;
         }
 
         // Implement other repository methods as needed

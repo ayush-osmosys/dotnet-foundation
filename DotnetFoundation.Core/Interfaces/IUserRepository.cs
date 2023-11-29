@@ -8,10 +8,14 @@ namespace DotnetFoundation.Core.Interfaces.UserRepo
 {
     public interface IUserRepository
     {
-        // Method signatures for interacting with user data
-        Task<User> GetByIdAsync(string userId);
-        Task<Guid> AddAsync(User user);
-        Task UpdateAsync(User user);
-        Task DeleteAsync(string userId);
+        Task<ICollection<User>> GetAll();
+
+        Task<User> GetUserById(int UserId);
+
+        Task<User> AddUser(User toCreate);
+
+        Task<User> UpdateUser(int UserId, string name, string email);
+
+        Task DeleteUser(int UserId);
     }
 }

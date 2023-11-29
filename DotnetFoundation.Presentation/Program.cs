@@ -4,6 +4,10 @@ using DotnetFoundation.Application;
 using DotnetFoundation.Infrastructure;
 using Serilog;
 using Serilog.Events;
+using DotnetFoundation.Core.Interfaces.UserRepo;
+using DotnetFoundation.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using DotnetFoundation.Infrastructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication()
                 .AddInfrastructure();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// DB connection Setup
+builder.Services.AddDbContext<UserDbContext>(options =>
+{
+    string connectionString = builder.Configuration.GetConnectionString("DBConnection");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 // Logging service Serilogs
 builder.Logging.AddSerilog();
