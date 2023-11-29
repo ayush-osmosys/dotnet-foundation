@@ -46,7 +46,7 @@ namespace DotnetFoundation.Presentation.Controllers
 
         [HttpGet]
         [Route("get/{userId}")]
-        public async Task<IActionResult> GetUserById(string userId)
+        public async Task<IActionResult> GetUserById(int userId)
         {
             try
             {

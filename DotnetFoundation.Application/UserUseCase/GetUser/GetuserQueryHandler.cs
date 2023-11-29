@@ -21,7 +21,7 @@ namespace DotnetFoundation.Application.UserUseCase.GetUser
         public async Task<User> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             // You can add validation, logging, error handling, etc., as needed
-            return await _userRepository.GetByIdAsync(request.UserId);
+            return await _userRepository.GetUserById(request.UserId);
         }
     }
 }

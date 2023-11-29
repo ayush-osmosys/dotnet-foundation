@@ -9,6 +9,6 @@ namespace DotnetFoundation.Application.UserUseCase.GetUser
 {
     public class GetUserQuery : IRequest<User>
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

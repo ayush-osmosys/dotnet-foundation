@@ -8,6 +8,8 @@ using DotnetFoundation.Core.Interfaces.UserRepo;
 using DotnetFoundation.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using DotnetFoundation.Infrastructure.Identity;
+using DotnetFoundation.Infrastructure.Services;
+using DotnetFoundation.Core.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,7 @@ builder.Services.AddApplication()
                 .AddInfrastructure();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // DB connection Setup
 builder.Services.AddDbContext<UserDbContext>(options =>
